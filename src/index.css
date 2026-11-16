@@ -1,0 +1,305 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    --glass-mx: 50vw;
+    --glass-my: 35vh;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: #050607;
+    color: #f4f4f5;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  /* Dense, barely-transparent Apple frosted glass with soft background glow & specular surface reflection */
+  .glass-panel {
+    background-color: rgba(18, 22, 29, 0.64);
+    background-image:
+      radial-gradient(
+        500px circle at var(--glass-mx) var(--glass-my),
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(68, 214, 44, 0.07) 34%,
+        transparent 70%
+      ),
+      linear-gradient(
+        142deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0.05) 38%,
+        rgba(68, 214, 44, 0.025) 66%,
+        rgba(255, 255, 255, 0.09) 100%
+      );
+    background-attachment: fixed, scroll;
+    backdrop-filter: blur(48px) saturate(210%) brightness(1.1);
+    -webkit-backdrop-filter: blur(48px) saturate(210%) brightness(1.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.42),
+      inset 1px 0 0 0 rgba(255, 255, 255, 0.14),
+      inset 0 -1px 1px 0 rgba(68, 214, 44, 0.2),
+      0 24px 54px -18px rgba(0, 0, 0, 0.78),
+      0 4px 16px -4px rgba(0, 0, 0, 0.42);
+  }
+
+  /* Heavy frosted Apple glass overlay — barely transparent over the 3D particle background */
+  .sheer-glass {
+    background-color: rgba(14, 17, 23, 0.6);
+    background-image:
+      radial-gradient(
+        460px circle at var(--glass-mx) var(--glass-my),
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(68, 214, 44, 0.08) 34%,
+        transparent 68%
+      ),
+      linear-gradient(
+        142deg,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.055) 40%,
+        rgba(255, 255, 255, 0.02) 68%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+    background-attachment: fixed, scroll;
+    backdrop-filter: blur(46px) saturate(215%) brightness(1.12);
+    -webkit-backdrop-filter: blur(46px) saturate(215%) brightness(1.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.46),
+      inset 1px 0 0 0 rgba(255, 255, 255, 0.15),
+      inset 0 -1px 1px 0 rgba(68, 214, 44, 0.22),
+      0 24px 56px -18px rgba(0, 0, 0, 0.74),
+      0 4px 16px -4px rgba(0, 0, 0, 0.36);
+  }
+
+  /* Dense frosted inset Apple glass for inputs, nested cards, nodes, and UI frames */
+  .apple-glass-sub {
+    background-color: rgba(16, 20, 27, 0.62);
+    background-image:
+      radial-gradient(
+        400px circle at var(--glass-mx) var(--glass-my),
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(68, 214, 44, 0.055) 36%,
+        transparent 72%
+      ),
+      linear-gradient(
+        150deg,
+        rgba(255, 255, 255, 0.13) 0%,
+        rgba(255, 255, 255, 0.03) 52%,
+        rgba(255, 255, 255, 0.07) 100%
+      );
+    background-attachment: fixed, scroll;
+    backdrop-filter: blur(40px) saturate(195%) brightness(1.08);
+    -webkit-backdrop-filter: blur(40px) saturate(195%) brightness(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 1px 0 rgba(68, 214, 44, 0.15),
+      0 14px 30px -14px rgba(0, 0, 0, 0.66);
+  }
+}
+
+@keyframes wenew-cursor-glide {
+  0%, 100% {
+    transform: translate3d(24px, 18px, 0) scale(1);
+  }
+  28% {
+    transform: translate3d(132px, 64px, 0) scale(1);
+  }
+  34% {
+    transform: translate3d(132px, 64px, 0) scale(0.86);
+  }
+  42% {
+    transform: translate3d(132px, 64px, 0) scale(1);
+  }
+  70% {
+    transform: translate3d(206px, 118px, 0) scale(1);
+  }
+  76% {
+    transform: translate3d(206px, 118px, 0) scale(0.88);
+  }
+  84% {
+    transform: translate3d(206px, 118px, 0) scale(1);
+  }
+}
+
+@keyframes wenew-click-ripple {
+  0%, 28%, 100% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  34% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+@keyframes wenew-cta-pulse {
+  0%, 26%, 54%, 100% {
+    box-shadow: 0 0 0 0 rgba(68, 214, 44, 0.35);
+    transform: scale(1);
+  }
+  34% {
+    box-shadow: 0 0 18px 3px rgba(68, 214, 44, 0.55);
+    transform: scale(0.95);
+  }
+  42% {
+    box-shadow: 0 0 10px 1px rgba(68, 214, 44, 0.38);
+    transform: scale(1.03);
+  }
+}
+
+@keyframes wenew-float-card {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0);
+  }
+  50% {
+    transform: translate3d(0, -5px, 0);
+  }
+}
+
+@keyframes wenew-sweep-line {
+  0% {
+    transform: translateX(-100%);
+  }
+  65%, 100% {
+    transform: translateX(220%);
+  }
+}
+
+.wenew-anim-cursor {
+  animation: wenew-cursor-glide 6.4s cubic-bezier(0.42, 0, 0.22, 1) infinite;
+}
+
+.wenew-anim-ripple {
+  animation: wenew-click-ripple 6.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.wenew-anim-cta {
+  animation: wenew-cta-pulse 6.4s ease-in-out infinite;
+}
+
+.wenew-anim-float-slow {
+  animation: wenew-float-card 4.4s ease-in-out infinite;
+}
+
+.wenew-anim-float-delay {
+  animation: wenew-float-card 4.4s ease-in-out 1.4s infinite;
+}
+
+.wenew-anim-sweep {
+  animation: wenew-sweep-line 3.8s ease-in-out infinite;
+}
+
+@keyframes wenew-thruster-flicker {
+  0%, 100% {
+    transform: scaleY(0.92) scaleX(0.98);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scaleY(1.16) scaleX(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes wenew-ship-hover {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.wenew-anim-thruster {
+  transform-origin: center top;
+  animation: wenew-thruster-flicker 0.24s ease-in-out infinite;
+}
+
+.wenew-anim-ship-hover {
+  animation: wenew-ship-hover 2.8s ease-in-out infinite;
+}
+
+@keyframes wenew-flow-dash {
+  from {
+    stroke-dashoffset: 24;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes wenew-radar-ring {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
+
+@keyframes wenew-node-float {
+  0%, 100% {
+    margin-top: 0px;
+  }
+  50% {
+    margin-top: -4px;
+  }
+}
+
+.wenew-anim-flow-dash {
+  animation: wenew-flow-dash 1.35s linear infinite;
+}
+
+.wenew-anim-radar-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wenew-radar-ring 3.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.wenew-anim-radar-ring-delay {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wenew-radar-ring 3.2s cubic-bezier(0.16, 1, 0.3, 1) 1.6s infinite;
+}
+
+.wenew-anim-node-float {
+  animation: wenew-node-float 3.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .wenew-anim-cursor,
+  .wenew-anim-ripple,
+  .wenew-anim-cta,
+  .wenew-anim-float-slow,
+  .wenew-anim-float-delay,
+  .wenew-anim-sweep,
+  .wenew-anim-thruster,
+  .wenew-anim-ship-hover,
+  .wenew-anim-flow-dash,
+  .wenew-anim-radar-ring,
+  .wenew-anim-radar-ring-delay,
+  .wenew-anim-node-float {
+    animation: none !important;
+  }
+}

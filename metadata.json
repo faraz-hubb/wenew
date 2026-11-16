@@ -1,0 +1,6 @@
+{
+  "name": "Covalence",
+  "description": "Collective intelligence and unified organizational knowledge platform with interactive 3D spatial exploration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
